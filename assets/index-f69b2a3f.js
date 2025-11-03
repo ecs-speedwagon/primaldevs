@@ -1,0 +1,7 @@
+(function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))n(t);new MutationObserver(t=>{for(const r of t)if(r.type==="childList")for(const i of r.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&n(i)}).observe(document,{childList:!0,subtree:!0});function s(t){const r={};return t.integrity&&(r.integrity=t.integrity),t.referrerPolicy&&(r.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?r.credentials="include":t.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function n(t){if(t.ep)return;t.ep=!0;const r=s(t);fetch(t.href,r)}})();let a=[];function d(o){a=o}const c=document.querySelector(".events-ul");function l(){if(!c)return;c.innerHTML="";const o=a.map(e=>{let s=e.images?e.images[0].url:"",n=e.dates&&e.dates.start&&e.dates.start.localDate?e.dates.start.localDate:"";return`
+          <li class="event-item">
+            <img src="${s}" alt="${e.name}">
+            <h3>${e.name}</h3>
+            <p>${n}</p>
+          </li>
+        `}).join("");c.insertAdjacentHTML("beforeend",o)}const u="q6wGVb9Aq0qhPo2kRkaUMu7npvf9A2ZE",f="https://app.ticketmaster.com/discovery/v2";async function m(){try{const o=`${f}/events.json?apikey=${u}&countryCode=DE`,e=await fetch(o);if(!e.ok)throw new Error(`Request failed: ${e.status}`);const s=await e.json();s&&s._embedded&&s._embedded.events&&d(s._embedded.events),l()}catch(o){console.error("error get",o.message)}}m();

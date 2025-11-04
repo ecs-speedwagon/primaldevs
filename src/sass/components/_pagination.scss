@@ -1,0 +1,22 @@
+@use '../utilities/vars' as *;
+@use '../utilities/mixin' as *;
+
+.pagination-unit {
+  @include font-text($color: $white);
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: none;
+}
+
+.active {
+  @include font-text($color: $mainTitleColor);
+  border: 1px solid $mainTitleColor;
+  border-radius: 10px 0;
+  width: 30px;
+  height: 30px;
+}
+
+.pagination-dots {
+  color: $white;
+}

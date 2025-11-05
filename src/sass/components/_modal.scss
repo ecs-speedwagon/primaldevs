@@ -1,3 +1,73 @@
-.modal-vignette{
-    display: none;
+@use '../utilities/vars' as *;
+@use '../utilities/mixin' as *;
+@use '../utilities/placeholder' as *;
+
+.modal-vignette {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+}
+
+.modal-vignette.active {
+  display: block;
+  backdrop-filter: blur(3px);
+  background: $modalVignette;
+}
+
+.modal-box {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  column-gap: 60px;
+  align-items: center;
+  flex-wrap: nowrap;
+  padding: 62px 47px 62px 30px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 930px;
+  height: 1023px;
+  border-radius: 300px 0;
+  background: $modalBackground;
+}
+
+.close-modal-butt {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  border: none;
+  background: none;
+  width: 25px;
+  height: 25px;
+
+  svg {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+.event-main-img {
+  width: 360px;
+  height: 641px;
+}
+
+.modal-info-list {
+  width: 492px;
+  height: 641px;
+}
+
+.more-author-butt {
+  @include font-text($color: $modalButtonsColor, $size: 16px, $weight: 500);
+  border: 1px solid $modalButtonsColor;
+  background: none;
+  border-radius: 5px;
+  width: 255px;
+  height: 40px;
+  position: absolute;
+  cursor: pointer;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 62px;
+  @extend %modal-button;
 }

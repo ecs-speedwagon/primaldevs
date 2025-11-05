@@ -10,7 +10,7 @@
   cursor: pointer;
 }
 
-.active {
+.pagination-unit.active {
   @include font-text($color: $mainTitleColor);
   border: 1px solid $mainTitleColor;
   border-radius: 10px 0;

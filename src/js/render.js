@@ -11,18 +11,11 @@ export function renderEvents() {
   if (!eventsContainer) return;
   eventsContainer.innerHTML = '';
 
-  const markup = events
+  const markup = events   
     .map(event => {
-
-
-
       //без різниці
       let imageUrl = event.images ? event.images[0].url : '';
       // if(event.images) imageUrl=event.images[0].url
-
-
-
-
 
       //тут теж
       let dateText =

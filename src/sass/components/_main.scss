@@ -1,0 +1,8 @@
+@use "../utilities/vars" as *;
+
+body {
+  background-color: $backgroundColor;
+}
+.main-section{
+  background: url(/src/img/bodyGlitchBg.png);
+}

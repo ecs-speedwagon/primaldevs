@@ -1,5 +1,4 @@
 let events = [];
-
 // events ми не можемо експортувати й взаємодіяти в іншому докі, тому обходим так
 export function eventHandle(newEvent) {
   events = newEvent;
@@ -20,26 +19,35 @@ export function renderEvents() {
 
   const markup = eventsToRender
     .map(event => {
-      //без різниці
-      let imageUrl = event.images ? event.images[0].url : '';
-      // if(event.images) imageUrl=event.images[0].url
+      const moreAuthorUrl = event.url || '#';
+      const imageUrl =
+        event.images?.find(img => img.ratio === '3_2')?.url || '';
+      const dateText = event.dates?.start?.localDate || 'No date info';
+      const timeText = event.dates?.start?.localTime || 'Unknown time';
+      const timezone = event.dates?.timezone || 'Local time';
+      const venue = event._embedded?.venues?.[0];
+      const venueName = venue?.name || "We don't have enough info";
+      const city = venue?.city?.name || '';
+      const country = venue?.country?.name || '';
+      const info =
+        typeof event.description === 'string' && event.description.trim() !== ''
+          ? event.description.slice(0, 140) +
+            (event.description.length > 140 ? '…' : '')
+          : 'No info available';
 
-      //тут теж
-      let dateText =
-        event.dates && event.dates.start && event.dates.start.localDate
-          ? event.dates.start.localDate
-          : '';
+      const name =
+        typeof event.name === 'string' && event.name.trim() !== ''
+          ? event.name
+          : 'Untitled event';
 
-      // if (event.dates && event.dates.start) {
-      //   dateText = event.dates.start.localDate;
-      // }
       return `
-          <li class="event-item">
-            <img src="${imageUrl}" alt="${event.name}">
-            <h3>${event.name}</h3>
-            <p>${dateText}</p>
-          </li>
-        `;
+        <li class="event-item">
+          <img src="${imageUrl}" alt="${name}" data-url="${moreAuthorUrl}">
+          <h3 class="event-name" data-name="${info}">${name}</h3>
+          <p class="event-date" data-time="${timeText} ${timezone}">${dateText}</p>
+          <p class="event-place" data-place="${city}, ${country}">${venueName}</p>
+        </li>
+      `;
     })
     .join('');
 

@@ -1,8 +1,8 @@
-@use "../utilities/vars" as *;
-
+@use '../utilities/vars' as *;
+@use '../utilities/mixin' as *;
 body {
   background-color: $backgroundColor;
 }
-.main-section{
+.main-section {
   background: url(/src/img/bodyGlitchBg.png);
 }

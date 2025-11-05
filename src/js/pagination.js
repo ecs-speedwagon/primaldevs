@@ -36,9 +36,14 @@ export function renderPagination(total) {
   paginationContainer.innerHTML = '';
 
   let butts = [];
-
+  function createDots() {
+    const dots = document.createElement('span');
+    dots.textContent = '...';
+    dots.classList.add('pagination-dots');
+    butts.push(dots);
+  }
   //перевірка максимуму сторінок
-  if (totalPages <= 9) {
+  if (totalPages <= 5) {
     for (let i = 0; i < totalPages; i++) {
       butts.push(createButton(i));
     }
@@ -46,27 +51,24 @@ export function renderPagination(total) {
     //перша кнопка
     butts.push(createButton(0));
 
-    let start = Math.max(1, currentPage - 4);
-    let end = Math.min(totalPages - 2, currentPage + 4);
+    let start = Math.max(1, currentPage - 2);
+    let end = Math.min(totalPages - 2, currentPage + 2);
 
     //шоб у мінус не йшло
-    if (currentPage < 4) {
+    if (currentPage < 2) {
       start = 1;
       end = 4;
     }
 
     //шоб більше не було
-    if (currentPage > totalPages - 5) {
-      start = totalPages - 8;
+    if (currentPage > totalPages - 4) {
+      start = totalPages - 5;
       end = totalPages - 2;
     }
 
     //...
     if (start > 1) {
-      const dots = document.createElement('span');
-      dots.textContent = '...';
-      dots.classList.add('pagination-dots');
-      butts.push(dots);
+      createDots();
     }
 
     //то шо посєрьодкі
@@ -76,10 +78,7 @@ export function renderPagination(total) {
 
     //...№2
     if (end < totalPages - 2) {
-      const dots = document.createElement('span');
-      dots.textContent = '...';
-      dots.classList.add('pagination-dots');
-      butts.push(dots);
+      createDots();
     }
 
     //ласт кнопка

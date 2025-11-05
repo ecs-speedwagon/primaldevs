@@ -1,4 +1,4 @@
-import { renderEvents, eventHandle } from './render';
+import { renderEvents, eventHandle } from './render.js';
 import { currentPage, renderPagination } from './pagination.js';
 const API_KEY = 'q6wGVb9Aq0qhPo2kRkaUMu7npvf9A2ZE';
 const BASE_URL = 'https://app.ticketmaster.com/discovery/v2';

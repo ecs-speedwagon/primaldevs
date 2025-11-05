@@ -7,10 +7,17 @@ export function eventHandle(newEvent) {
 const eventsContainer = document.querySelector('.events-ul');
 
 export function renderEvents() {
+  let eventsToRender = 0;
+  if (findEven.length > 0) {
+    eventsToRender = findEven;
+  } else {
+    eventsToRender = events;
+  }
+
   if (!eventsContainer) return;
   eventsContainer.innerHTML = '';
 
-  const markup = events
+  const markup = eventsToRender
     .map(event => {
       const moreAuthorUrl = event.url || '#';
       const imageUrl =
@@ -45,4 +52,25 @@ export function renderEvents() {
     .join('');
 
   eventsContainer.insertAdjacentHTML('beforeend', markup);
+}
+
+// економим як можемо, тому тут частина пошуку
+
+let findEven = [];
+
+export function findEvenHandle(sepData) {
+  findEven = sepData;
+}
+
+//search ивент
+export function searchEvents(searchEvent) {
+  if (!searchEvent.trim()) {
+    findEven = [...events];
+  } else {
+    findEven = events.filter(event => {
+      return event.name.toLowerCase().includes(searchEvent.toLowerCase());
+    });
+  }
+
+  renderEvents();
 }

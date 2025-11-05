@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "glob": "^8.1.0",
+    "sass": "^1.93.3",
     "vite": "^6.4.1"
   },
   "author": " <@gmail.com>",
@@ -22,7 +23,6 @@
     "body": "^5.1.0",
     "body-scroll-lock": "^4.0.0-beta.0",
     "gh-pages": "^6.3.0",
-    "sass": "^1.93.3",
     "skroll": "^1.4.3",
     "swiper": "^10.0.4",
     "vite-plugin-full-reload": "^1.0.5",

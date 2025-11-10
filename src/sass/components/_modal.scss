@@ -6,7 +6,6 @@
   display: none;
   position: fixed;
   inset: 0;
-  z-index: 1000;
 }
 
 .modal-vignette.active {
@@ -18,43 +17,85 @@
 .modal-box {
   position: relative;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   column-gap: 60px;
   align-items: center;
   flex-wrap: nowrap;
-  padding: 62px 47px 62px 30px;
+  padding: 62px 17px 62px 12px;
+  row-gap: 18px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 930px;
-  height: 1023px;
-  border-radius: 300px 0;
   background: $modalBackground;
+  border-radius: 150px 0;
+  width: 272px;
+  height: 915px;
+  @media (min-width: 767px) {
+    border-radius: 300px 0;
+    width: 595px;
+    height: 831px;
+  }
+  @media (min-width: 1279px) {
+    border-radius: 300px 0;
+    width: 930px;
+    height: 1023px;
+  }
 }
 
 .close-modal-butt {
   position: absolute;
-  top: 30px;
-  right: 30px;
+  top: 25px;
+  right: 25px;
   border: none;
   background: none;
-  width: 25px;
-  height: 25px;
+  width: 17px;
+  height: 17px;
 
   svg {
-    width: 25px;
-    height: 25px;
+    width: 17px;
+    height: 17px;
   }
 }
 
-.event-main-img {
-  width: 360px;
-  height: 641px;
+.modal-main-img {
+  display: none;
+  @media (min-width: 767px) {
+    width: 233px;
+    height: 416px;
+    display: block;
+  }
+  @media (min-width: 1279px) {
+    width: 233px;
+    height: 641px;
+    display: block;
+  }
+}
+
+.modal-sub-img {
+  border-radius: 50px;
+  width: 102px;
+  height: 102px;
 }
 
 .modal-info-list {
-  width: 492px;
-  height: 641px;
+  width: 243px;
+  height: 551px;
+  display: flex;
+  row-gap: 10px;
+  flex-direction: column;
+}
+
+.modal-info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.buy-tick-butt {
+  @include font-text($color: $white, $size: 16px, $weight: 500);
+  width: 145px;
+  height: 40px;
+  text-transform: uppercase;
+  @extend %modal-button;
 }
 
 .more-author-butt {
@@ -62,12 +103,10 @@
   border: 1px solid $modalButtonsColor;
   background: none;
   border-radius: 5px;
-  width: 255px;
+  width: 230px;
   height: 40px;
-  position: absolute;
+  margin-top: 7px;
+  text-transform: uppercase;
   cursor: pointer;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 62px;
   @extend %modal-button;
 }

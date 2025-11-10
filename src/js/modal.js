@@ -29,7 +29,8 @@ eventsContainer.addEventListener('click', e => {
         </svg>
       </button>
 
-      <img class="event-main-img" id="modal-event-img" src="${image}" alt="${name}" />
+      <img class="modal-sub-img" src="${image}" alt="${name}" />
+      <img class="modal-main-img" src="${image}" alt="${name}" />
 
       <ul class="modal-info-list" id="modal-info-list">
         <li class="modal-info-item" id="modal-info">
@@ -50,10 +51,10 @@ eventsContainer.addEventListener('click', e => {
         </li>
         <li class="modal-info-item" id="modal-prices">
           <h2>Prices</h2>
-          <p class="modal-prices-standard">Standard 1000–1500 UAH</p>
-          <button class="butt-buy-standard">Buy tickets</button>
-          <p class="modal-prices-vip">VIP 3000–5500 UAH</p>
-          <button class="butt-buy-vip">Buy tickets</button>
+          <p class="modal-prices">Standard 1000–1500 UAH</p>
+          <button class="buy-tick-butt">Buy tickets</button>
+          <p class="modal-prices">VIP 3000–5500 UAH</p>
+          <button class="buy-tick-butt">Buy tickets</button>
         </li>
       </ul>
 

@@ -7,9 +7,9 @@
 }
 @mixin font-text(
   $google-font: 'Montserrat',
-  $size: '16px',
-  $weight: '700',
-  $line-height: '100%',
+  $size: 16px,
+  $weight: 700,
+  $line-height: 125%,
   $color
 ) {
   font-family: $google-font;

@@ -6,10 +6,13 @@ export function renderEvents(events) {
 
   eventsToRender = events;
 
+  eventsToRender = events;
+
   if (!eventsContainer) return;
   eventsContainer.innerHTML = '';
 
   const markup = eventsToRender
+    .map((event, index) => {
     .map((event, index) => {
       const imageUrl =
         event.images?.find(img => img.ratio === '3_2')?.url || '';
@@ -22,6 +25,13 @@ export function renderEvents(events) {
           : 'Untitled event';
 
       return `
+      <li class="event-item" data-id="${index}">
+        <img src="${imageUrl}" alt="${name}">
+        <h3 class="event-name">${name}</h3>
+        <p class="event-date">${dateText}</p>
+        <p class="event-place">${venueName}</p>
+      </li>
+    `;
       <li class="event-item" data-id="${index}">
         <img src="${imageUrl}" alt="${name}">
         <h3 class="event-name">${name}</h3>

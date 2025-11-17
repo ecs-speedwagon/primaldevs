@@ -2,6 +2,8 @@ import {  modalContainer } from './dom.js';
 
 // const modalContainer = document.querySelector('#modal-vignette');
 // export const eventsContainer = document.querySelector('.events-ul');
+const modalContainer = document.querySelector('#modal-vignette');
+export const eventsContainer = document.querySelector('.events-ul');
 
 export function modalRender(events, el) {
   const item = el.target.closest('.event-item');
@@ -10,6 +12,27 @@ export function modalRender(events, el) {
 
   // дані
   const moreAuthorUrl = event.url ||  '#';
+  const imageUrl = event.images?.find(img => img.ratio === '3_2')?.url || '';
+  const dateText = event.dates?.start?.localDate || 'No date info';
+  const timeText = event.dates?.start?.localTime || 'Unknown time';
+  const timezone = event.dates?.timezone || 'Local time';
+  const venue = event._embedded?.venues?.[0];
+  const venueName = venue?.name || "We don't have enough info";
+  const city = venue?.city?.name || '';
+  const country = venue?.country?.name || '';
+  const info =
+    typeof event.description === 'string' && event.description.trim() !== ''
+      ? event.description.slice(0, 140) +
+        (event.description.length > 140 ? '…' : '')
+      : false;
+  const performer =
+    event._embedded?.attractions?.[0]?.name || 'Unknown performer';
+  const name =
+    typeof event.name === 'string' && event.name.trim() !== ''
+      ? event.name
+      : 'Untitled event';
+  // дані
+  const moreAuthorUrl = event.url || '#';
   const imageUrl = event.images?.find(img => img.ratio === '3_2')?.url || '';
   const dateText = event.dates?.start?.localDate || 'No date info';
   const timeText = event.dates?.start?.localTime || 'Unknown time';
@@ -49,6 +72,9 @@ export function modalRender(events, el) {
         </li>
         <li
 class="modal-info-item" id="modal-when">
+          <h2 class="modal-title">When</h2>
+          <p class="modal-text">${dateText}<span class="br-space"></span>${timeText} (${timezone})</p>
+        <li class="modal-info-item" id="modal-when">
           <h2 class="modal-title">When</h2>
           <p class="modal-text">${dateText}<span class="br-space"></span>${timeText} (${timezone})</p>
         </li>

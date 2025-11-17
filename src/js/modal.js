@@ -1,24 +1,32 @@
 const modalContainer = document.querySelector('#modal-vignette');
-const eventsContainer = document.querySelector('.events-ul');
+export const eventsContainer = document.querySelector('.events-ul');
 
-// слухач кліку на картку події
-eventsContainer.addEventListener('click', e => {
-  const item = e.target.closest('.event-item');
+export function modalRender(events, el) {
+  const item = el.target.closest('.event-item');
   if (!item) return;
+  const event = events[item.dataset.id];
 
-  //елементи і дані
-  const nameEl = item.querySelector('.event-name');
-  const dateEl = item.querySelector('.event-date');
-  const placeEl = item.querySelector('.event-place');
-  const imgEl = item.querySelector('img');
-
-  const name = nameEl?.textContent?.trim() || 'Unknown event';
-  const info = nameEl?.dataset.name?.trim() || 'No info available';
-  const time = dateEl?.dataset.time?.trim() || 'Unknown time';
-  const place = placeEl?.dataset.place?.trim() || 'Unknown place';
-  const city = placeEl?.textContent?.trim() || '';
-  const image = imgEl?.src || '';
-  const url = imgEl.dataset.url || '#';
+  // дані
+  const moreAuthorUrl = event.url || '#';
+  const imageUrl = event.images?.find(img => img.ratio === '3_2')?.url || '';
+  const dateText = event.dates?.start?.localDate || 'No date info';
+  const timeText = event.dates?.start?.localTime || 'Unknown time';
+  const timezone = event.dates?.timezone || 'Local time';
+  const venue = event._embedded?.venues?.[0];
+  const venueName = venue?.name || "We don't have enough info";
+  const city = venue?.city?.name || '';
+  const country = venue?.country?.name || '';
+  const info =
+    typeof event.description === 'string' && event.description.trim() !== ''
+      ? event.description.slice(0, 140) +
+        (event.description.length > 140 ? '…' : '')
+      : false;
+  const performer =
+    event._embedded?.attractions?.[0]?.name || 'Unknown performer';
+  const name =
+    typeof event.name === 'string' && event.name.trim() !== ''
+      ? event.name
+      : 'Untitled event';
 
   //створення модалки
   modalContainer.innerHTML = `
@@ -29,35 +37,36 @@ eventsContainer.addEventListener('click', e => {
         </svg>
       </button>
 
-      <img class="event-main-img" id="modal-event-img" src="${image}" alt="${name}" />
+      <div class="modal-sub-img" style="background: url('${imageUrl}') center/cover no-repeat;"></div>
+      <div class="modal-main-img" style="background: url('${imageUrl}') center/cover no-repeat;"></div>
 
       <ul class="modal-info-list" id="modal-info-list">
         <li class="modal-info-item" id="modal-info">
-          <h2>Info</h2>
-          <p class="modal-info-text">${info}</p>
+          <h2 class="modal-title">Info</h2>
+          <p class="modal-text">${info ? info : name} </p>
         </li>
         <li class="modal-info-item" id="modal-when">
-          <h2>When</h2>
-          <p class="modal-when-text">${time}</p>
+          <h2 class="modal-title">When</h2>
+          <p class="modal-text">${dateText}<span class="br-space"></span>${timeText} (${timezone})</p>
         </li>
         <li class="modal-info-item" id="modal-where">
-          <h2>Where</h2>
-          <p class="modal-where-text">${place}<br>${city}</p>
+          <h2 class="modal-title">Where</h2>
+          <p class="modal-text">${city}, ${country}<span class="br-space"></span>${venueName}</p>
         </li>
         <li class="modal-info-item" id="modal-who">
-          <h2>Who</h2>
-          <p class="modal-who-text">Performer info here</p>
+          <h2 class="modal-title">Who</h2>
+          <p class="modal-text">${performer}</p>
         </li>
         <li class="modal-info-item" id="modal-prices">
-          <h2>Prices</h2>
-          <p class="modal-prices-standard">Standard 1000–1500 UAH</p>
-          <button class="butt-buy-standard">Buy tickets</button>
-          <p class="modal-prices-vip">VIP 3000–5500 UAH</p>
-          <button class="butt-buy-vip">Buy tickets</button>
+          <h2 class="modal-title">Prices</h2>
+          <p class="modal-text">Standard 1000–1500 UAH</p>
+          <button class="buy-tick-butt">Buy tickets</button>
+          <p class="modal-text">VIP 3000–5500 UAH</p>
+          <button class="buy-tick-butt">Buy tickets</button>
         </li>
       </ul>
 
-      <button data-url="${url}" class="more-author-butt" id="more-author-butt">
+      <button data-url="${moreAuthorUrl}" class="more-author-butt" id="more-author-butt">
         More from this author
       </button>
     </div>
@@ -88,4 +97,5 @@ eventsContainer.addEventListener('click', e => {
       console.warn('URL not provided');
     }
   });
-});
+}
+// слухач кліку на картку події

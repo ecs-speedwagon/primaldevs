@@ -1,7 +1,9 @@
 import { getEvents } from './api.js';
+import { paginationContainer } from './dom.js';
 
 export let currentPage = 0;
-const paginationContainer = document.querySelector('.pagination-box');
+// export const paginationContainer = document.querySelector('.pagination-box');
+export const paginationContainer = document.querySelector('.pagination-box');
 let totalPages;
 let activeButt = null;
 
@@ -24,7 +26,7 @@ function createButton(id) {
 
     currentPage = id;
     window.scrollTo(0, 0);
-    getEvents();
+    getEvents(currentPage);
     renderPagination(totalPages);
   });
 

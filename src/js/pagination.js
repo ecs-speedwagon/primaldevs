@@ -1,6 +1,8 @@
 import { getEvents } from './api.js';
+import { paginationContainer } from './dom.js';
 
 export let currentPage = 0;
+// export const paginationContainer = document.querySelector('.pagination-box');
 export const paginationContainer = document.querySelector('.pagination-box');
 let totalPages;
 let activeButt = null;

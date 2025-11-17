@@ -5,7 +5,7 @@ const BASE_URL = 'https://app.ticketmaster.com/discovery/v2';
 export async function getEvents() {
   try {
     //тут мож  countryCode любий, тут найбільше адекватних
-    const url = `${BASE_URL}/events.json?apikey=${API_KEY}&countryCode=DE&page=${currentPage}`;
+    const url = `${BASE_URL}/events.json?apikey=${API_KEY}&page=${currentPage}`;
     const res = await fetch(url);
     if (!res.ok) throw new Error(`Request failed: ${res.status}`);
     const data = await res.json();

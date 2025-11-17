@@ -68,5 +68,12 @@
 }
 
 .dropdown-toggle::after {
-  margin-left: 100px;
-}
+    position: absolute;
+    left: 85%;
+    top: 50%;  }
+  .dropdown-menu{
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 150px;
+    z-index: 1000;
+  }

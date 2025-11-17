@@ -1,3 +1,7 @@
+import {  modalContainer } from './dom.js';
+
+// const modalContainer = document.querySelector('#modal-vignette');
+// export const eventsContainer = document.querySelector('.events-ul');
 const modalContainer = document.querySelector('#modal-vignette');
 export const eventsContainer = document.querySelector('.events-ul');
 
@@ -7,7 +11,8 @@ export function modalRender(events, el) {
   const event = events[item.dataset.id];
 
   // дані
-  const moreAuthorUrl = event.url || '#';
+  const moreAuthorUrl = event.url ||  '#';
+  
   const imageUrl = event.images?.find(img => img.ratio === '3_2')?.url || '';
   const dateText = event.dates?.start?.localDate || 'No date info';
   const timeText = event.dates?.start?.localTime || 'Unknown time';
@@ -29,8 +34,8 @@ export function modalRender(events, el) {
       : 'Untitled event';
 
   //створення модалки
-  modalContainer.innerHTML = `
-    <div id="modal-box" class="modal-box">
+  modalContainer.innerHTML = 
+    `<div id="modal-box" class="modal-box">
       <button class="close-modal-butt" id="close-modal-butt">
         <svg class="close-modal-icon">
           <use href="../img/cross.svg"></use>
@@ -45,7 +50,8 @@ export function modalRender(events, el) {
           <h2 class="modal-title">Info</h2>
           <p class="modal-text">${info ? info : name} </p>
         </li>
-        <li class="modal-info-item" id="modal-when">
+        <li
+class="modal-info-item" id="modal-when">
           <h2 class="modal-title">When</h2>
           <p class="modal-text">${dateText}<span class="br-space"></span>${timeText} (${timezone})</p>
         </li>
@@ -69,8 +75,8 @@ export function modalRender(events, el) {
       <button data-url="${moreAuthorUrl}" class="more-author-butt" id="more-author-butt">
         More from this author
       </button>
-    </div>
-  `;
+    </div>`
+  ;
 
   //показуємо модалку
   modalContainer.classList.add('active');

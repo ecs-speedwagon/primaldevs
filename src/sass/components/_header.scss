@@ -1,6 +1,8 @@
 @use '../utilities/vars' as *;
 @use '../utilities/mixin' as *;
 
+
+
 .header-section {
   position: relative;
   height: 446px;
@@ -17,13 +19,37 @@
   display: block;
   align-self: center;
   align-items: center;
-  width: 600px;
+  width: 215px;
   text-align: center;
   margin-bottom: 10rem;
+  @media (min-width: 767px) {
+    width: 353px;
+  }
+  @media (min-width: 1279px) {
+    width: 600px;
+  }
 }
 .hero-text {
-  @include font-text($size: 50px, $weight: 900, $color: $mainTitleColor);
+  @include font-text($size: 18px, $weight: 900, $color: $mainTitleColor);
   text-transform: uppercase;
+  @media (min-width: 767px) {
+    @include font-text($size: 30px, $weight: 900, $color: $mainTitleColor);
+
+  }
+  @media (min-width: 1279px) {
+    @include font-text($size: 50px, $weight: 900, $color: $mainTitleColor);
+
+  }
+}
+
+.logo-img{
+  height: 33px;
+  @media (min-width: 767px) {
+    height: 50px;
+  }
+  @media (min-width: 1279px) {
+    height: 70px;
+  }
 }
 .logo-container {
   position: absolute;
@@ -32,13 +58,29 @@
   backdrop-filter: blur(15px);
   background: rgba(0, 0, 0, 0.2);
   border-radius: 0 0 130% 0;
-  padding: 3rem 6rem 8rem 3rem;
+  padding: 1.2rem 1.7rem 2rem 1.2rem;
+  @media (min-width: 767px) {
+    padding: 1.5rem 2.2rem 3rem 1.5rem;
+  }
+  @media (min-width: 1279px) {
+    padding: 2rem 5rem 5rem 2rem;
+  }
 }
 
 .hero-form {
   @include flex-center;
-  gap: 30px;
-  margin-top: 50px;
+  flex-direction: column;
+  row-gap: 20px;
+  margin-top: 20px;
+  @media (min-width: 767px) {
+    flex-direction: row;
+    gap: 30px;
+    margin-top: 30px;
+  }
+  @media (min-width: 1279px) {
+    gap: 30px;
+    margin-top: 50px;
+  }
 }
 #searching-input {
   border: none;
@@ -46,7 +88,7 @@
   background: rgba(255, 255, 255, 0.2);
   border-radius: 30px;
   width: 270px;
-  padding: 10px 20px 10px 30px;
+  padding: 10px 10px 10px 30px;
   color: $white;
 }
 #searching-input::placeholder {
@@ -59,7 +101,7 @@
   background: rgba(255, 255, 255, 0.2);
   border-radius: 30px;
   width: 270px;
-  padding: 10px 10px 10px 15px;
+  padding: 10px 10px 10px 30px;
   color: rgba(255, 255, 255, 0.6);
   text-align: left;
 }

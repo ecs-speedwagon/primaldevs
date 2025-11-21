@@ -2,7 +2,7 @@ import {  modalContainer } from './dom.js';
 
 // const modalContainer = document.querySelector('#modal-vignette');
 // export const eventsContainer = document.querySelector('.events-ul');
-const modalContainer = document.querySelector('#modal-vignette');
+// const modalContainer = document.querySelector('#modal-vignette');
 export const eventsContainer = document.querySelector('.events-ul');
 
 export function modalRender(events, el) {

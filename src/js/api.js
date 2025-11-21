@@ -9,6 +9,7 @@ export async function getEvents() {
     const res = await fetch(url);
     if (!res.ok) throw new Error(`Request failed: ${res.status}`);
     const data = await res.json();
+    
 
     //шлях такий))
 

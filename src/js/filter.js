@@ -13,7 +13,7 @@ export function renderDropdown(events) {
   const unicCountryName = [
     ...new Set(
       events
-        .map(el => el._embedded?.venues?.[0]?.state?.name?.trim())
+        .map(el => el._embedded?.venues?.[0]?.city?.name?.trim())
     ),
   ];
 

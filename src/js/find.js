@@ -1,5 +1,4 @@
 
-export const findInput = document.querySelector('#searching-input')
 export function searchEvents(events, query) {
   const text = query.trim().toLowerCase();
   if (!text) return [...events];

@@ -4,15 +4,21 @@ import injectHTML from 'vite-plugin-html-inject'
 import FullReload from 'vite-plugin-full-reload'
 
 export default defineConfig({
+  base: '/primaldevs/', 
+
   define: {
     global: {},
   },
+
   root: 'src',
+
   build: {
     rollupOptions: {
       input: glob.sync('./src/*.html'),
     },
     outDir: '../dist',
+    emptyOutDir: true,
   },
+
   plugins: [injectHTML(), FullReload(['./src/**/**.html'])],
 })

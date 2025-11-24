@@ -23,7 +23,7 @@ export function renderEvents(events) {
 
       return `
       <li class="event-item" data-id="${index}">
-        <img src="${imageUrl}" alt="${name}">
+      <div class="event-img"> <img src="${imageUrl}" alt="${name}"></div>
         <h3 class="event-name">${name}</h3>
         <p class="event-date">${dateText}</p>
         <p class="event-place">${venueName}</p>

@@ -6,21 +6,23 @@ $backgroundColor: #0e0e0e;
 $decorationColor: #212121;
 $placeholderColor: #939393;
 $backgroundCirclesColor: linear-gradient(
-    -28deg,
-    rgba(196, 196, 196, 1),
-    rgba(196, 196, 196, 0)
+  -28deg,
+  rgba(196, 196, 196, 1),
+  rgba(196, 196, 196, 0)
 );
 $heroVignette: rgba(11, 11, 11, 0.5);
 $heroToMainGradient: linear-gradient(
-    0deg,
-    rgba(13, 13, 13, 0.19),
-    rgba(14, 14, 14, 0.8)
+  0deg,
+  rgba(13, 13, 13, 0.19),
+  rgba(14, 14, 14, 0.8)
 );
 $logobackground: linear-gradient(
-    51deg,
-    rgba(196, 196, 196, 1),
-    rgba(196, 196, 196, 0)
+  51deg,
+  rgba(196, 196, 196, 1),
+  rgba(196, 196, 196, 0)
 );
 $modalVignette: rgba(32, 13, 29, 0.6);
 $modalBackground: #fff2fd;
 $modalButtonsColor: #4c00fe;
+$bp-tablet: 767px;
+$bp-desktop: 1279px;

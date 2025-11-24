@@ -7,43 +7,48 @@
   position: fixed;
   inset: 0;
   z-index: index 1000;
-}
 
-.modal-vignette.active {
-  display: block;
-  backdrop-filter: blur(3px);
-  background: $modalVignette;
+  &.active {
+    display: block;
+    backdrop-filter: blur(3px);
+    background: $modalVignette;
+  }
 }
 
 .modal-box {
   position: relative;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
+  row-gap: 18px;
+  justify-content: center;
   align-items: center;
   align-content: flex-end;
-  justify-content: center;
-  flex-wrap: wrap;
-  row-gap: 18px;
+
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: $modalBackground;
+
   border-radius: 150px 0;
   width: 272px;
   height: 915px;
-  @media (min-width: 767px) {
+
+  @media (min-width: $bp-tablet) {
     border-radius: 300px 0;
     width: 595px;
     height: 831px;
+    row-gap: 0;
     column-gap: 30px;
-    padding-left: 51px;
+    padding-left: 50px;
+    align-content: center;
   }
-  @media (min-width: 1279px) {
-    border-radius: 300px 0;
+
+  @media (min-width: $bp-desktop) {
     width: 930px;
     height: 1023px;
     column-gap: 60px;
-    padding-left: 32px;
+    padding-left: 51px;
     justify-content: flex-start;
   }
 }
@@ -58,39 +63,43 @@
   height: 17px;
 
   svg {
-    width: 17px;
-    height: 17px;
+    width: 100%;
+    height: 100%;
   }
 }
 
 .modal-main-img {
   display: none;
-  @media (min-width: 767px) {
+
+  @media (min-width: $bp-tablet) {
+    display: block;
     width: 233px;
     height: 416px;
-    display: block;
+    align-self: flex-start;
   }
-  @media (min-width: 1279px) {
+
+  @media (min-width: $bp-desktop) {
     width: 360px;
     height: 641px;
-    display: block;
   }
 }
 
 .modal-sub-img {
-  border-radius: 50%;
-  width: 102px;
-  height: 102px;
   position: absolute;
+  border-radius: 50%;
   left: 50%;
   top: 75px;
   transform: translateX(-50%);
-  @media (min-width: 767px) {
+  width: 102px;
+  height: 102px;
+
+  @media (min-width: $bp-tablet) {
     top: 28px;
     width: 70px;
     height: 70px;
   }
-  @media (min-width: 1279px) {
+
+  @media (min-width: $bp-desktop) {
     width: 132px;
     height: 132px;
   }
@@ -100,58 +109,70 @@
   width: 243px;
   height: 551px;
   display: flex;
-  row-gap: 10px;
-  margin: 0;
   flex-direction: column;
+  row-gap: 10px;
 
-  @media (min-width: 767px) {
+  @media (min-width: $bp-tablet) {
+    width: 280px;
+  }
+
+  @media (min-width: $bp-desktop) {
+    row-gap: 20px;
     width: 450px;
     height: 641px;
-  }
-  @media (min-width: 1279px) {
-    row-gap: 20px;
   }
 }
 
 .buy-tick-butt {
   @include font-text($color: $white, $size: 16px, $weight: 500);
+  @extend %modal-button;
+
   width: 145px;
   height: 40px;
+  border: none;
   text-transform: uppercase;
   margin-block: 5px 15px;
-  border: none;
-  @media (min-width: 767px) {
-    margin-block: 10px 20px;
+  cursor: pointer;
+
+  @media (min-width: $bp-tablet) {
+    margin-block: 8px 17px;
   }
-  @media (min-width: 1279px) {
+
+  @media (min-width: $bp-desktop) {
     margin-block: 11px 24px;
   }
+
   &:last-child {
     margin-bottom: 0;
   }
-  @extend %modal-button;
 }
 
 .more-author-butt {
   @include font-text($color: $modalButtonsColor, $size: 16px, $weight: 500);
+  @extend %modal-button;
+
+  width: 230px;
+  height: 40px;
   border: 1px solid $modalButtonsColor;
   background: none;
   border-radius: 5px;
-  justify-self: center;
-  width: 230px;
-  height: 40px;
-  margin-top: 7px;
-  margin-bottom: 104px;
-  margin: 0 auto;
-  text-transform: uppercase;
   cursor: pointer;
-  @media (min-width: 767px) {
-    margin-bottom: 56px;
+  text-transform: uppercase;
+  justify-self: center;
+
+  margin: 7px 0 104px;
+
+  @media (min-width: $bp-tablet) {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    margin: 43px 0 56px;
   }
-  @media (min-width: 1279px) {
-    margin-block: 45px 62px;
+
+  @media (min-width: $bp-desktop) {
+    margin: 45px 0 62px;
   }
-  @extend %modal-button;
 }
 
 .modal-info-item {
@@ -159,24 +180,29 @@
   flex-direction: column;
   align-items: center;
   row-gap: 5px;
-  @media (min-width: 767px) {
+
+  @media (min-width: $bp-tablet) {
     align-items: flex-start;
   }
-  @media (min-width: 1279px) {
+
+  @media (min-width: $bp-desktop) {
     row-gap: 7px;
   }
 }
 
 .modal-text {
   @include font-text($color: $backgroundColor, $weight: 400);
-  margin: 0;
   text-align: center;
-  @media (min-width: 767px) {
+  margin: 0;
+
+  @media (min-width: $bp-tablet) {
     text-align: left;
   }
-  @media (min-width: 1279px) {
+
+  @media (min-width: $bp-desktop) {
     font-size: 18px;
   }
+
   .modal-info-list > :first-child & {
     height: 66px;
   }
@@ -195,7 +221,8 @@
 .modal-title {
   @include font-text($color: $mainTitleColor, $size: 20px, $weight: 600);
   text-transform: uppercase;
-  @media (min-width: 1279px) {
+
+  @media (min-width: $bp-desktop) {
     font-size: 24px;
   }
 }

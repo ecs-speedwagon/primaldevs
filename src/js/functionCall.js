@@ -2,30 +2,31 @@ import { getEvents } from './api.js';
 import { renderEvents } from './render.js';
 import { modalRender } from './modal.js';
 import { paginationContainer, eventsContainer, findInput } from './dom.js';
-import { currentPage } from './pagination.js';
+import { currentPage, renderPagination } from './pagination.js';
 import { renderDropdown } from './filter.js';
-import { searchEvents } from './find.js';
 
 let events = [];
-let searchQuery = "";
+let searchQuery = '';
 
-// застосувати пошук до events
-function applySearch() {
-  const filtered = searchEvents(events, searchQuery);
-  renderEvents(filtered);
-}
+async function initEvents(page, keyword) {
+  const data = await getEvents(page, keyword);
+  events = data._embedded.events;
 
-async function initEvents(page = currentPage) {
-  events = await getEvents(page);
+  //всі сторінки як не дивно
+  if (data?.page?.totalPages && data.page.totalPages <= 50) {
+    renderPagination(data.page.totalPages);
+  } else {
+    renderPagination(50);
+  }
 
+  renderEvents(events);
   renderDropdown(events);
-  applySearch();
 }
 
 if (findInput) {
-  findInput.addEventListener("input", (e) => {
-    searchQuery = e.target.value;
-    applySearch();
+  findInput.addEventListener('input', e => {
+    searchQuery = e?.target?.value;
+    initEvents(currentPage, searchQuery)
   });
 }
 
@@ -34,8 +35,8 @@ eventsContainer.addEventListener('click', e => modalRender(events, e));
 paginationContainer.addEventListener('click', async e => {
   if (e.target.classList.contains('pagination-unit')) {
     const page = parseInt(e.target.textContent) - 1;
-    await initEvents(page);
+    await initEvents(page, searchQuery);
   }
 });
 
-initEvents();
+initEvents(currentPage);

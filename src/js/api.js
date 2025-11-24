@@ -1,25 +1,18 @@
-import { currentPage, renderPagination } from './pagination.js';
 const API_KEY = 'q6wGVb9Aq0qhPo2kRkaUMu7npvf9A2ZE';
 const BASE_URL = 'https://app.ticketmaster.com/discovery/v2';
 
-export async function getEvents() {
+export async function getEvents(page, keyword) {
   try {
     //тут мож  countryCode любий, тут найбільше адекватних
-    const url = `${BASE_URL}/events.json?apikey=${API_KEY}&page=${currentPage}`;
+    const url = `${BASE_URL}/events.json?apikey=${API_KEY}&size=25&page=${page}&keyword=${
+      keyword ? keyword :  ''
+    }`;
     const res = await fetch(url);
     if (!res.ok) throw new Error(`Request failed: ${res.status}`);
     const data = await res.json();
 
-    //шлях такий))
-
-    //всі сторінки як не дивно
-    if (data?.page?.totalPages && data.page.totalPages <= 50) {
-      renderPagination(data.page.totalPages);
-    } else {
-      renderPagination(50);
-    }
     if (data?._embedded?.events) {
-      return data._embedded.events;
+      return data;
     }
   } catch (error) {
     console.error('error get', error.message);

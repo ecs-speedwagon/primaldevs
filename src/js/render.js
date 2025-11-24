@@ -1,5 +1,4 @@
 import { eventsContainer } from './dom.js';
-// const eventsContainer = document.querySelector('.events-ul');
 
 export function renderEvents(events) {
   let eventsToRender = 0;

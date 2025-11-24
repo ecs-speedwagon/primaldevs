@@ -6,6 +6,7 @@
   display: none;
   position: fixed;
   inset: 0;
+  z-index: index 1000;
 }
 
 .modal-vignette.active {
@@ -17,11 +18,11 @@
 .modal-box {
   position: relative;
   display: flex;
-  flex-direction: column;
-  column-gap: 60px;
+  flex-direction: row;
   align-items: center;
-  flex-wrap: nowrap;
-  padding: 75px 17px 104px 12px;
+  align-content: flex-end;
+  justify-content: center;
+  flex-wrap: wrap;
   row-gap: 18px;
   top: 50%;
   left: 50%;
@@ -34,11 +35,16 @@
     border-radius: 300px 0;
     width: 595px;
     height: 831px;
+    column-gap: 30px;
+    padding-left: 51px;
   }
   @media (min-width: 1279px) {
     border-radius: 300px 0;
     width: 930px;
     height: 1023px;
+    column-gap: 60px;
+    padding-left: 32px;
+    justify-content: flex-start;
   }
 }
 
@@ -65,16 +71,29 @@
     display: block;
   }
   @media (min-width: 1279px) {
-    width: 233px;
+    width: 360px;
     height: 641px;
     display: block;
   }
 }
 
 .modal-sub-img {
-  border-radius: 50px;
+  border-radius: 50%;
   width: 102px;
   height: 102px;
+  position: absolute;
+  left: 50%;
+  top: 75px;
+  transform: translateX(-50%);
+  @media (min-width: 767px) {
+    top: 28px;
+    width: 70px;
+    height: 70px;
+  }
+  @media (min-width: 1279px) {
+    width: 132px;
+    height: 132px;
+  }
 }
 
 .modal-info-list {
@@ -84,6 +103,14 @@
   row-gap: 10px;
   margin: 0;
   flex-direction: column;
+
+  @media (min-width: 767px) {
+    width: 450px;
+    height: 641px;
+  }
+  @media (min-width: 1279px) {
+    row-gap: 20px;
+  }
 }
 
 .buy-tick-butt {
@@ -93,6 +120,15 @@
   text-transform: uppercase;
   margin-block: 5px 15px;
   border: none;
+  @media (min-width: 767px) {
+    margin-block: 10px 20px;
+  }
+  @media (min-width: 1279px) {
+    margin-block: 11px 24px;
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
   @extend %modal-button;
 }
 
@@ -101,11 +137,20 @@
   border: 1px solid $modalButtonsColor;
   background: none;
   border-radius: 5px;
+  justify-self: center;
   width: 230px;
   height: 40px;
   margin-top: 7px;
+  margin-bottom: 104px;
+  margin: 0 auto;
   text-transform: uppercase;
   cursor: pointer;
+  @media (min-width: 767px) {
+    margin-bottom: 56px;
+  }
+  @media (min-width: 1279px) {
+    margin-block: 45px 62px;
+  }
   @extend %modal-button;
 }
 
@@ -114,12 +159,32 @@
   flex-direction: column;
   align-items: center;
   row-gap: 5px;
+  @media (min-width: 767px) {
+    align-items: flex-start;
+  }
+  @media (min-width: 1279px) {
+    row-gap: 7px;
+  }
 }
 
 .modal-text {
   @include font-text($color: $backgroundColor, $weight: 400);
-  text-align: center;
   margin: 0;
+  text-align: center;
+  @media (min-width: 767px) {
+    text-align: left;
+  }
+  @media (min-width: 1279px) {
+    font-size: 18px;
+  }
+  .modal-info-list > :first-child & {
+    height: 66px;
+  }
+}
+
+.modal-info-item:has(.buy-tick-butt) p {
+  display: inline-flex;
+  align-items: center;
 }
 
 .br-space {
@@ -130,4 +195,15 @@
 .modal-title {
   @include font-text($color: $mainTitleColor, $size: 20px, $weight: 600);
   text-transform: uppercase;
+  @media (min-width: 1279px) {
+    font-size: 24px;
+  }
+}
+
+.ticket-barcode-icon {
+  width: 20px;
+  height: 13px;
+  margin-right: 8px;
+  vertical-align: middle;
+  fill: $mainTitleColor;
 }

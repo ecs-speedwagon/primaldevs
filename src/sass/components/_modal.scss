@@ -6,12 +6,14 @@
   display: none;
   position: fixed;
   inset: 0;
+  
 }
 
 .modal-vignette.active {
   display: block;
   backdrop-filter: blur(3px);
   background: $modalVignette;
+  
 }
 
 .modal-box {

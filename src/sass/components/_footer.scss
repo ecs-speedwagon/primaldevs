@@ -1,2 +1,9 @@
 @use '../utilities/vars' as *;
 @use '../utilities/mixin' as *;
+
+.footer-text{
+    @include font-text($size: 16px, $weight: 400, $color: rgba($white, 0.4));
+    text-align: center;
+    width: 300px;
+    margin: 0 auto;
+}

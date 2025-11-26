@@ -1,4 +1,3 @@
-import { getEvents } from './api.js';
 import { paginationContainer } from './dom.js';
 
 export let currentPage = 0;
@@ -7,6 +6,10 @@ let activeButt = null;
 
 export function resetCurrentPage() {
   currentPage = 0;
+}
+
+export function setCurrentPage(page) {
+  currentPage = page;
 }
 
 function createButton(id) {

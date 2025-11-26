@@ -13,12 +13,14 @@ import {
   currentPage,
   renderPagination,
   resetCurrentPage,
+  setCurrentPage,
 } from './pagination.js';
 import { renderDropdown } from './filter.js';
 import { debounce } from './debounce.js';
 import { getCountryCode } from './getCountryCode.js';
 import { getSize } from './getSize.js';
 
+let page = 0;
 let code;
 let events = [];
 let searchQuery = '';
@@ -27,6 +29,7 @@ let size = getSize();
 renderDropdown();
 
 async function initEvents(page, keyword, size, code) {
+  setCurrentPage(page);
   const data = await getEvents(page, keyword, size, code);
   if (!data?._embedded?.events) {
     if (code !== 'US') {

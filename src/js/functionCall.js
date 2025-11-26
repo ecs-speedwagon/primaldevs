@@ -1,41 +1,73 @@
 import { getEvents } from './api.js';
 import { renderEvents } from './render.js';
 import { modalRender } from './modal.js';
-import { paginationContainer, eventsContainer, findInput } from './dom.js';
-import { currentPage } from './pagination.js';
+import {
+  paginationContainer,
+  eventsContainer,
+  findInput,
+  windowSize,
+  dropdownEl,
+  dropdownBtn,
+} from './dom.js';
+import { currentPage, renderPagination } from './pagination.js';
 import { renderDropdown } from './filter.js';
-import { searchEvents } from './find.js';
+import { debounce } from './debounce.js';
+import { getCountryCode } from './getCountryCode.js';
 
+let code = await getCountryCode();
 let events = [];
-let searchQuery = "";
+let searchQuery = '';
+let size = windowSize <= 320 ? 20 : windowSize <= 1280 ? 21 : 25;
 
-// застосувати пошук до events
-function applySearch() {
-  const filtered = searchEvents(events, searchQuery);
-  renderEvents(filtered);
+renderDropdown();
+
+async function initEvents(page, keyword, size, code) {
+  const data = await getEvents(page, keyword, size, code);
+  if (!data?._embedded?.events) {
+    if (code !== 'US') {
+      code = 'US';
+      dropdownBtn.textContent = 'US';
+      await initEvents(page, keyword, size, code);
+      return;
+    }
+    events = [];
+    renderEvents(events);
+    return;
+  }
+  events = data._embedded.events;
+
+  const totalPages = data?.page?.totalPages || 1;
+  renderPagination(Math.min(totalPages, 50));
+  renderEvents(events);
+  renderDropdown();
 }
 
-async function initEvents(page = currentPage) {
-  events = await getEvents(page);
-
-  renderDropdown(events);
-  applySearch();
-}
-
-if (findInput) {
-  findInput.addEventListener("input", (e) => {
+findInput?.addEventListener(
+  'input',
+  debounce(e => {
     searchQuery = e.target.value;
-    applySearch();
-  });
-}
+    initEvents(currentPage, searchQuery, size, code);
+  }, 300)
+);
 
 eventsContainer.addEventListener('click', e => modalRender(events, e));
 
 paginationContainer.addEventListener('click', async e => {
   if (e.target.classList.contains('pagination-unit')) {
     const page = parseInt(e.target.textContent) - 1;
-    await initEvents(page);
+    await initEvents(page, searchQuery, size, code);
   }
 });
 
-initEvents();
+dropdownEl.addEventListener('click', async e => {
+  e.preventDefault();
+  const button = e.target;
+  if (button.tagName !== 'A') return;
+
+  const countryCode = button.textContent.trim();
+  code = countryCode;
+  dropdownBtn.textContent = countryCode;
+  await initEvents(currentPage, searchQuery, size, code);
+});
+
+initEvents(currentPage, '', size, code);

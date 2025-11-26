@@ -2,8 +2,6 @@ import { getEvents } from './api.js';
 import { paginationContainer } from './dom.js';
 
 export let currentPage = 0;
-// export const paginationContainer = document.querySelector('.pagination-box');
-// export const paginationContainer = document.querySelector('.pagination-box');
 let totalPages;
 let activeButt = null;
 
@@ -17,19 +15,6 @@ function createButton(id) {
     button.classList.add('active');
     activeButt = button;
   }
-
-  //івент
-  button.addEventListener('click', () => {
-    if (activeButt) activeButt.classList.remove('active');
-    button.classList.add('active');
-    activeButt = button;
-
-    currentPage = id;
-    window.scrollTo(0, 0);
-    getEvents(currentPage);
-    renderPagination(totalPages);
-  });
-
   return button;
 }
 

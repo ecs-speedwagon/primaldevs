@@ -15,7 +15,6 @@ function createButton(id) {
     button.classList.add('active');
     activeButt = button;
   }
-
   return button;
 }
 

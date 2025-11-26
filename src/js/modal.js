@@ -118,4 +118,3 @@ class="modal-info-item" id="modal-when">
     }
   });
 }
-// слухач кліку на картку події

@@ -6,8 +6,6 @@
   display: none;
   position: fixed;
   inset: 0;
-  z-index: index 1000;
-
   &.active {
     display: block;
     backdrop-filter: blur(3px);

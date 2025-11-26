@@ -11,6 +11,7 @@ export async function getEvents(page, keyword, size, code) {
     const res = await fetch(url);
     if (!res.ok) throw new Error(`Request failed: ${res.status}`);
     const data = await res.json();
+    
 
     if (data?._embedded?.events) {
       return data;

@@ -4,3 +4,4 @@ import './js/filter';
 import './js/modal';
 import './js/pagination';
 import './js/functionCall';
+

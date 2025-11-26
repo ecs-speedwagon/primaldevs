@@ -92,7 +92,14 @@ export function renderDropdown() {
 
   dropdownEl.innerHTML = '';
 
-  const markupDD = countryCodes
+  const unicCountryName = [
+    ...new Set(
+      events
+        .map(el => el._embedded?.venues?.[0]?.state?.name?.trim())
+    ),
+  ];
+
+  const markupDD = unicCountryName
     .map(
       element => `
         <li>

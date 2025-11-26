@@ -6,6 +6,12 @@ import FullReload from 'vite-plugin-full-reload'
 export default defineConfig({
   base: '/primaldevs/', 
 
+
+  esbuild: false,  
+
+
+ 
+
   define: {
     global: {},
   },
@@ -18,6 +24,7 @@ export default defineConfig({
     },
     outDir: '../dist',
     emptyOutDir: true,
+    target: 'esnext'
   },
 
   plugins: [injectHTML(), FullReload(['./src/**/**.html'])],

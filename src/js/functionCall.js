@@ -9,15 +9,20 @@ import {
   dropdownEl,
   dropdownBtn,
 } from './dom.js';
-import { currentPage, renderPagination } from './pagination.js';
+import {
+  currentPage,
+  renderPagination,
+  resetCurrentPage,
+} from './pagination.js';
 import { renderDropdown } from './filter.js';
 import { debounce } from './debounce.js';
 import { getCountryCode } from './getCountryCode.js';
+import { getSize } from './getSize.js';
 
-let code = await getCountryCode();
+let code;
 let events = [];
 let searchQuery = '';
-let size = windowSize <= 320 ? 20 : windowSize <= 1280 ? 21 : 25;
+let size = getSize();
 
 renderDropdown();
 
@@ -70,4 +75,27 @@ dropdownEl.addEventListener('click', async e => {
   await initEvents(currentPage, searchQuery, size, code);
 });
 
-initEvents(currentPage, '', size, code);
+window.addEventListener('resize', () => {
+  const newSize = getSize();
+  if (newSize !== size) {
+    size = newSize;
+    resetCurrentPage();
+    initEvents(currentPage, searchQuery, size, code);
+  }
+});
+
+async function initialize() {
+  code = await getCountryCode();
+  initEvents(currentPage, '', size, code);
+}
+
+window.addEventListener('resize', () => {
+  const newSize = getSize();
+  if (newSize !== size) {
+    size = newSize;
+    resetCurrentPage();
+    initEvents(currentPage, searchQuery, size, code);
+  }
+});
+
+initialize();

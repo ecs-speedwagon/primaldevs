@@ -7,7 +7,6 @@ export async function getEvents(page, keyword, size, code) {
     const url = `${BASE_URL}/events.json?apikey=${API_KEY}&size=${size}&page=${page}&keyword=${
       keyword ? keyword : ''
     }&countryCode=${code}`;
-    console.log('url: ', url);
     const res = await fetch(url);
     if (!res.ok) throw new Error(`Request failed: ${res.status}`);
     const data = await res.json();

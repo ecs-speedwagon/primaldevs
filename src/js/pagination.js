@@ -5,6 +5,10 @@ export let currentPage = 0;
 let totalPages;
 let activeButt = null;
 
+export function resetCurrentPage() {
+  currentPage = 0;
+}
+
 function createButton(id) {
   //створити кнопку
   const button = document.createElement('button');

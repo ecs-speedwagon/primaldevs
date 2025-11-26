@@ -1,5 +1,4 @@
 import { dropdownEl, dropdownBtn } from './dom.js';
-import { renderEvents } from './render.js';
 
 const countryCodes = [
   'US',
@@ -92,14 +91,7 @@ export function renderDropdown() {
 
   dropdownEl.innerHTML = '';
 
-  const unicCountryName = [
-    ...new Set(
-      events
-        .map(el => el._embedded?.venues?.[0]?.state?.name?.trim())
-    ),
-  ];
-
-  const markupDD = unicCountryName
+  const markupDD = countryCodes
     .map(
       element => `
         <li>

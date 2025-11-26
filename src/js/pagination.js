@@ -15,19 +15,6 @@ function createButton(id) {
     button.classList.add('active');
     activeButt = button;
   }
-
-  //івент
-  button.addEventListener('click', () => {
-    if (activeButt) activeButt.classList.remove('active');
-    button.classList.add('active');
-    activeButt = button;
-
-    currentPage = id;
-    window.scrollTo(0, 0);
-    getEvents(currentPage);
-    renderPagination(totalPages);
-  });
-
   return button;
 }
 

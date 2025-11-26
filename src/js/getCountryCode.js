@@ -3,5 +3,5 @@ export async function getCountryCode() {
   if (!res.ok) return null;
 
   const data = await res.json();
-  return data.country; 
+  return data.country;
 }

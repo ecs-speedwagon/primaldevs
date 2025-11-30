@@ -32,7 +32,7 @@ export function modalRender(events, el) {
   modalContainer.innerHTML = `<div id="modal-box" class="modal-box">
       <button class="close-modal-butt" id="close-modal-butt">
         <svg class="close-modal-icon">
-          <use href="../img/cross.svg"></use>
+          <use href="./img/cross.svg"></use>
         </svg>
       </button>
 

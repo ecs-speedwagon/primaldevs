@@ -5,9 +5,9 @@ import {
   paginationContainer,
   eventsContainer,
   findInput,
-  windowSize,
   dropdownEl,
   dropdownBtn,
+  loader,
 } from './dom.js';
 import {
   currentPage,
@@ -30,6 +30,7 @@ renderDropdown();
 
 async function initEvents(page, keyword, size, code) {
   setCurrentPage(page);
+  loader.classList.add('active');
   const data = await getEvents(page, keyword, size, code);
   if (!data?._embedded?.events) {
     if (code !== 'US') {
@@ -42,6 +43,8 @@ async function initEvents(page, keyword, size, code) {
     renderEvents(events);
     return;
   }
+  renderEvents([]);
+  loader.classList.remove('active');
   events = data._embedded.events;
 
   const totalPages = data?.page?.totalPages || 1;

@@ -1,6 +1,13 @@
 @use '../utilities/vars' as *;
 @use '../utilities/mixin' as *;
-
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 body {
   background-color: $backgroundColor;
 }
@@ -11,12 +18,30 @@ body {
   position: relative;
 
   @media (min-width: 767px) {
-
     margin-top: -3%;
   }
 
   @media (min-width: 1279px) {
     margin-top: 2%;
+  }
+}
+
+.loader {
+  display: none;
+  &.active {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 49%;
+    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
+    border: 5px solid #fff;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
   }
 }
 
@@ -43,13 +68,11 @@ body {
   flex-direction: column;
   width: 135px;
 
-
-
   @media (min-width: 767px) {
     width: calc((100% - 2 * 10px) / 3);
     max-width: 180px;
 
-    >img {
+    > img {
       width: 180px;
       height: 227px;
     }
@@ -57,15 +80,13 @@ body {
 
   @media (min-width: 1279px) {
     width: calc((100% - 3 * 10px) / 4);
-
   }
-
 }
 
 .event-img {
   position: relative;
 
-  >img {
+  > img {
     width: 128px;
     height: 161px;
     border-radius: 25% 0px 25% 0;
@@ -73,16 +94,15 @@ body {
   }
 
   @media (min-width: 767px) {
-    >img {
+    > img {
       width: 180px;
       height: 227px;
     }
   }
-
 }
 
 .event-img::before {
-  content: "";
+  content: '';
   position: absolute;
   top: -8%;
   left: 20%;
@@ -97,7 +117,7 @@ body {
   text-transform: lowercase;
   text-align: center;
   padding-top: 10px;
-  margin-bottom: 1px
+  margin-bottom: 1px;
 }
 
 .event-name::first-letter {
@@ -116,7 +136,7 @@ body {
 
   &::before {
     font-family: 'icomoon';
-    content: "\e947";
+    content: '\e947';
     position: absolute;
     left: 0;
     top: 50%;
@@ -125,7 +145,7 @@ body {
   }
 }
 
-.pagination-box{
+.pagination-box {
   @include flex-center;
   margin: 10% 0;
 }

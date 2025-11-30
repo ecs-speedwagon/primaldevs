@@ -5,3 +5,4 @@ export const paginationContainer = document.querySelector('.pagination-box');
 export const findInput = document.querySelector('#searching-input');
 export const modalContainer = document.querySelector('#modal-vignette');
 export const windowSize = Number.parseInt(document.documentElement.clientWidth);
+export const loader = document.querySelector('.loader')

@@ -20,6 +20,28 @@ body {
   }
 }
 
+.loader {
+  display: none;
+  &.active{
+    width: 48px;
+  height: 48px;
+  border: 5px solid #FFF;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+  }
+  }
+
+  @keyframes rotation {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+  } 
 .events-ul {
   display: flex;
   flex-wrap: wrap;
@@ -43,7 +65,7 @@ body {
   flex-direction: column;
   width: 135px;
 
-
+  animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 
   @media (min-width: 767px) {
     width: calc((100% - 2 * 10px) / 3);
@@ -61,7 +83,14 @@ body {
   }
 
 }
-
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .event-img {
   position: relative;
 

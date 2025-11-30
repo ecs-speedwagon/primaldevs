@@ -30,7 +30,6 @@ export function modalRender(events, el) {
 
   //створення модалки
   modalContainer.innerHTML = `
-    <div class="modal-vignette hiden" id="modal-vignette">
   <div id="modal-box" class="modal-box">
     <button class="close-modal-butt" id="close-modal-butt">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 25 25">
@@ -79,16 +78,16 @@ export function modalRender(events, el) {
         <h2 class="modal-title">Prices</h2>
         <p class="modal-text">
           <svg class="ticket-barcode-icon">
-            <use href="/src/img/ticketBarCode.svg"></use>
+            <use href="./img/ticketBarCode.svg"></use>
           </svg>
-          >Standard 1000–1500 UAH
+          Standard 1000–1500 UAH
         </p>
         <button class="buy-tick-butt">Buy tickets</button>
         <p class="modal-text">
           <svg class="ticket-barcode-icon">
-            <use href="/src/img/ticketBarCode.svg"></use>
+            <use href="./img/ticketBarCode.svg"></use>
           </svg>
-          >VIP 3000–5500 UAH
+          VIP 3000–5500 UAH
         </p>
         <button class="buy-tick-butt">Buy tickets</button>
       </li>
@@ -102,7 +101,6 @@ export function modalRender(events, el) {
       More from this author
     </button>
   </div>
-</div>
 `;
 
   //показуємо модалку

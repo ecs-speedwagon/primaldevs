@@ -29,68 +29,81 @@ export function modalRender(events, el) {
       : 'Untitled event';
 
   //створення модалки
-  modalContainer.innerHTML = `<div id="modal-box" class="modal-box">
-      <button class="close-modal-butt" id="close-modal-butt">
-        <svg class="close-modal-icon">
-          <use href="./img/cross.svg"></use>
-        </svg>
-      </button>
+  modalContainer.innerHTML = `
+    <div class="modal-vignette hiden" id="modal-vignette">
+  <div id="modal-box" class="modal-box">
+    <button class="close-modal-butt" id="close-modal-butt">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 25 25">
+        <path
+          fill="#4C00FE"
+          d="M1.29 25a1.29 1.29 0 0 1-.9-2.2L22.79.38a1.29 1.29 0 1 1 1.82 1.82L2.2 24.62c-.26.25-.59.38-.91.38Z"
+        />
+        <path
+          fill="#4C00FE"
+          d="M23.71 25c-.32 0-.65-.13-.9-.38L.38 2.2A1.29 1.29 0 0 1 2.2.38L24.62 22.8a1.29 1.29 0 0 1-.9 2.2Z"
+        />
+      </svg>
+    </button>
 
-      <div class="modal-sub-img" style="background: url('${imageUrl}') center/cover no-repeat;"></div>
-      <div class="modal-main-img" style="background: url('${imageUrl}') center/cover no-repeat;"></div>
+    <div
+      class="modal-sub-img"
+      style="background: url('${imageUrl}') center/cover no-repeat"
+    ></div>
+    <div
+      class="modal-main-img"
+      style="background: url('${imageUrl}') center/cover no-repeat"
+    ></div>
 
-      <ul class="modal-info-list" id="modal-info-list">
-        <li class="modal-info-item" id="modal-info">
-          <h2 class="modal-title">Info</h2>
-          <p class="modal-text">${info ? info : name} </p>
-        </li>
-        <li
-class="modal-info-item" id="modal-when">
-          <h2 class="modal-title">When</h2>
-          <p class="modal-text">${dateText}<span class="br-space"></span>${timeText} (${timezone})</p>
-        </li>
-        <li class="modal-info-item" id="modal-where">
-          <h2 class="modal-title">Where</h2>
-          <p class="modal-text">${city}, ${country}<span class="br-space"></span>${venueName}</p>
-        </li>
-        <li class="modal-info-item" id="modal-who">
-          <h2 class="modal-title">Who</h2>
-          <p class="modal-text">${performer}</p>
-        </li>
-        <li class="modal-info-item" id="modal-prices">
-          <h2 class="modal-title">Prices</h2>
-          <p class="modal-text">
-            <svg class="ticket-barcode-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 16">
-              <path d="M2.66668 0L0 0L0 16H2.66668L2.66668 0Z" fill="currentColor" />
-              <path d="M9.3737 0L6.70703 0L6.70703 16H9.3737L9.3737 0Z" fill="currentColor" />
-              <path d="M13.4142 0L10.7476 0L10.7476 16H13.4142L13.4142 0Z" fill="currentColor" />
-              <path d="M24.0001 0L20.0405 0L20.0405 16H24.0001L24.0001 0Z" fill="currentColor" />
-              <path d="M5.33334 0L4.04041 0L4.04041 16H5.33334L5.33334 0Z" fill="currentColor" />
-              <path d="M16 0L14.707 0L14.707 16H16L16 0Z" fill="currentColor" />
-              <path d="M18.6666 0L17.3737 0L17.3737 16H18.6666L18.6666 0Z" fill="currentColor" />
-            </svg>Standard
-            1000–1500 UAH
-          </p>
-          <button class="buy-tick-butt">Buy tickets</button>
-          <p class="modal-text">
-            <svg class="ticket-barcode-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 16">
-              <path d="M2.66668 0L0 0L0 16H2.66668L2.66668 0Z" fill="currentColor" />
-              <path d="M9.3737 0L6.70703 0L6.70703 16H9.3737L9.3737 0Z" fill="currentColor" />
-              <path d="M13.4142 0L10.7476 0L10.7476 16H13.4142L13.4142 0Z" fill="currentColor" />
-              <path d="M24.0001 0L20.0405 0L20.0405 16H24.0001L24.0001 0Z" fill="currentColor" />
-              <path d="M5.33334 0L4.04041 0L4.04041 16H5.33334L5.33334 0Z" fill="currentColor" />
-              <path d="M16 0L14.707 0L14.707 16H16L16 0Z" fill="currentColor" />
-              <path d="M18.6666 0L17.3737 0L17.3737 16H18.6666L18.6666 0Z" fill="currentColor" />
-            </svg>VIP 3000–5500 UAH
-          </p>
-          <button class="buy-tick-butt">Buy tickets</button>
-        </li>
-      </ul>
+    <ul class="modal-info-list" id="modal-info-list">
+      <li class="modal-info-item" id="modal-info">
+        <h2 class="modal-title">Info</h2>
+        <p class="modal-text">${info ? info : name}</p>
+      </li>
+      <li class="modal-info-item" id="modal-when">
+        <h2 class="modal-title">When</h2>
+        <p class="modal-text">
+          ${dateText}<span class="br-space"></span>${timeText} (${timezone})
+        </p>
+      </li>
+      <li class="modal-info-item" id="modal-where">
+        <h2 class="modal-title">Where</h2>
+        <p class="modal-text">
+          ${city}, ${country}<span class="br-space"></span>${venueName}
+        </p>
+      </li>
+      <li class="modal-info-item" id="modal-who">
+        <h2 class="modal-title">Who</h2>
+        <p class="modal-text">${performer}</p>
+      </li>
+      <li class="modal-info-item" id="modal-prices">
+        <h2 class="modal-title">Prices</h2>
+        <p class="modal-text">
+          <svg class="ticket-barcode-icon">
+            <use href="/src/img/ticketBarCode.svg"></use>
+          </svg>
+          >Standard 1000–1500 UAH
+        </p>
+        <button class="buy-tick-butt">Buy tickets</button>
+        <p class="modal-text">
+          <svg class="ticket-barcode-icon">
+            <use href="/src/img/ticketBarCode.svg"></use>
+          </svg>
+          >VIP 3000–5500 UAH
+        </p>
+        <button class="buy-tick-butt">Buy tickets</button>
+      </li>
+    </ul>
 
-      <button data-url="${moreAuthorUrl}" class="more-author-butt" id="more-author-butt">
-        More from this author
-      </button>
-    </div>`;
+    <button
+      data-url="${moreAuthorUrl}"
+      class="more-author-butt"
+      id="more-author-butt"
+    >
+      More from this author
+    </button>
+  </div>
+</div>
+`;
 
   //показуємо модалку
   modalContainer.classList.add('active');

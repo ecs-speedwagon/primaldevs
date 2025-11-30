@@ -6,7 +6,6 @@ body {
 }
 
 .main-section {
-  background: url(/src/img/bodyGlitchBg.png);
   margin-top: -8%;
   position: relative;
 
@@ -24,18 +23,22 @@ body {
   &.active {
     display: block;
     position: absolute;
-    top: 50%;
-    left: 49%;
-    transform: translate(-50%, -50%);
-    width: 48px;
-    height: 48px;
-    border: 5px solid #fff;
-    border-bottom-color: transparent;
-    border-radius: 50%;
-    display: inline-block;
-    box-sizing: border-box;
-    animation: rotation 1s linear infinite;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
   }
+}
+
+.loader-inner {
+  display: block;
+  width: 48px;
+  height: 48px;
+  border: 5px solid #fff;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
 }
 
 .events-ul {
@@ -137,11 +140,6 @@ body {
     transform: translateY(-50%);
     font-size: 12px;
   }
-}
-
-.pagination-box {
-  @include flex-center;
-  margin: 10% 0;
 }
 
 @keyframes rotation {

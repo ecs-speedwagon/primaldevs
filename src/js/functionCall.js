@@ -30,7 +30,9 @@ renderDropdown();
 
 async function initEvents(page, keyword, size, code) {
   setCurrentPage(page);
+
   loader.classList.add('active');
+  renderEvents([]);
   const data = await getEvents(page, keyword, size, code);
   if (!data?._embedded?.events) {
     if (code !== 'US') {
@@ -41,15 +43,15 @@ async function initEvents(page, keyword, size, code) {
     }
     events = [];
     renderEvents(events);
+    debounce(loader.classList.remove('active'), 500);
     return;
   }
-  renderEvents([]);
-  loader.classList.remove('active');
+  debounce(loader.classList.remove('active'), 500);
   events = data._embedded.events;
 
   const totalPages = data?.page?.totalPages || 1;
   renderPagination(Math.min(totalPages, 50));
-  renderEvents(events);
+  debounce(renderEvents(events), 300);
   renderDropdown();
 }
 
@@ -60,7 +62,6 @@ findInput?.addEventListener(
     initEvents(currentPage, searchQuery, size, code);
   }, 300)
 );
-
 eventsContainer.addEventListener('click', e => modalRender(events, e));
 
 paginationContainer.addEventListener('click', async e => {

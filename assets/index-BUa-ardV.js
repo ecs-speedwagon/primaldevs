@@ -10,7 +10,6 @@
           <a class="dropdown-item" href="#">${n}</a>
         </li>
       `).join("");y.insertAdjacentHTML("beforeend",e)}function j(e,n){const a=n.target.closest(".event-item");if(!a)return;const t=e[a.dataset.id],o=t.url||"#",s=t.images?.find(v=>v.ratio==="3_2")?.url||"",r=t.dates?.start?.localDate||"No date info",B=t.dates?.start?.localTime.slice(0,5)||"Unknown time",w=t.dates?.timezone||"Local time",f=t._embedded?.venues?.[0],E=f?.name||"We don't have enough info",P=f?.city?.name||"",R=f?.country?.name||"",M=typeof t.description=="string"&&t.description.trim()!==""?t.description.slice(0,140)+(t.description.length>140?"…":""):!1,H=t._embedded?.attractions?.[0]?.name||"Unknown performer",I=typeof t.name=="string"&&t.name.trim()!==""?t.name:"Untitled event";u.innerHTML=`
-    <div class="modal-vignette hiden" id="modal-vignette">
   <div id="modal-box" class="modal-box">
     <button class="close-modal-butt" id="close-modal-butt">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 25 25">
@@ -59,16 +58,16 @@
         <h2 class="modal-title">Prices</h2>
         <p class="modal-text">
           <svg class="ticket-barcode-icon">
-            <use href="/src/img/ticketBarCode.svg"></use>
+            <use href="./img/ticketBarCode.svg"></use>
           </svg>
-          >Standard 1000–1500 UAH
+          Standard 1000–1500 UAH
         </p>
         <button class="buy-tick-butt">Buy tickets</button>
         <p class="modal-text">
           <svg class="ticket-barcode-icon">
-            <use href="/src/img/ticketBarCode.svg"></use>
+            <use href="./img/ticketBarCode.svg"></use>
           </svg>
-          >VIP 3000–5500 UAH
+          VIP 3000–5500 UAH
         </p>
         <button class="buy-tick-butt">Buy tickets</button>
       </li>
@@ -82,5 +81,4 @@
       More from this author
     </button>
   </div>
-</div>
 `,u.classList.add("active"),u.querySelector("#close-modal-butt").addEventListener("click",()=>u.classList.remove("active")),u.addEventListener("click",v=>{v.target===u&&u.classList.remove("active")}),document.querySelector("#more-author-butt").addEventListener("click",v=>{const C=v.target.dataset.url;C&&C!=="#"?window.open(C,"_blank","noopener,noreferrer"):console.warn("URL not provided")})}let i=0,l;function x(){i=0}function z(e){i=e}function h(e){const n=document.createElement("button");return n.classList.add("pagination-unit"),n.textContent=e+1,e===i&&n.classList.add("active"),n}function G(e){l=e,$.innerHTML="";let n=[];function a(){const t=document.createElement("span");t.textContent="...",t.classList.add("pagination-dots"),n.push(t)}if(l<=5)for(let t=0;t<l;t++)n.push(h(t));else{n.push(h(0));let t=Math.max(1,i-2),o=Math.min(l-2,i+2);i<2&&(t=1,o=4),i>l-4&&(t=l-5,o=l-2),t>1&&a();for(let s=t;s<=o;s++)n.push(h(s));o<l-2&&a(),n.push(h(l-1))}n.map(t=>$.insertAdjacentElement("beforeend",t))}function L(e,n){let a;return(...t)=>{clearTimeout(a),a=setTimeout(()=>e(...t),n)}}async function W(){const e=await fetch("https://ipapi.co/json/");return e.ok?(await e.json()).country:null}function T(){const e=window.innerWidth;return e>=1280?20:e>=768?21:20}let d,g=[],p="",c=T();k();async function m(e,n,a,t){z(e),A.classList.add("active"),S([]);const o=await D(e,n,a,t);if(!o?._embedded?.events){if(t!=="US"){t="US",U.textContent="US",await m(e,n,a,t);return}g=[],S(g),L(A.classList.remove("active"),500);return}L(A.classList.remove("active"),500),g=o._embedded.events;const s=o?.page?.totalPages||1;G(Math.min(s,50)),L(S(g),300),k()}O?.addEventListener("input",L(e=>{p=e.target.value,m(i,p,c,d)},300));b.addEventListener("click",e=>j(g,e));$.addEventListener("click",async e=>{if(e.target.classList.contains("pagination-unit")){const n=parseInt(e.target.textContent)-1;await m(n,p,c,d)}});y.addEventListener("click",async e=>{e.preventDefault();const n=e.target;if(n.tagName!=="A")return;const a=n.textContent.trim();d=a,U.textContent=a,await m(i,p,c,d)});window.addEventListener("resize",()=>{const e=T();e!==c&&(c=e,x(),m(i,p,c,d))});async function Z(){d=await W(),m(i,"",c,d)}window.addEventListener("resize",()=>{const e=T();e!==c&&(c=e,x(),m(i,p,c,d))});Z();

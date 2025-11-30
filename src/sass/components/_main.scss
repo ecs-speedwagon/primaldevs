@@ -26,25 +26,6 @@ body {
   }
 }
 
-.loader {
-  display: none;
-  &.active {
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 49%;
-    transform: translate(-50%, -50%);
-    width: 48px;
-    height: 48px;
-    border: 5px solid #fff;
-    border-bottom-color: transparent;
-    border-radius: 50%;
-    display: inline-block;
-    box-sizing: border-box;
-    animation: rotation 1s linear infinite;
-  }
-}
-
 .events-ul {
   display: flex;
   flex-wrap: wrap;
@@ -68,6 +49,8 @@ body {
   flex-direction: column;
   width: 135px;
 
+  animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+
   @media (min-width: 767px) {
     width: calc((100% - 2 * 10px) / 3);
     max-width: 180px;
@@ -80,9 +63,18 @@ body {
 
   @media (min-width: 1279px) {
     width: calc((100% - 3 * 10px) / 4);
+
+  }
+
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
-
 .event-img {
   position: relative;
 

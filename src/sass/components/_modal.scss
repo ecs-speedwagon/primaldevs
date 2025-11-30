@@ -161,6 +161,7 @@
   justify-self: center;
 
   margin: 7px 0 104px;
+  animation: btn-glow 2s ease-in-out infinite;
 
   @media (min-width: $bp-tablet) {
     position: absolute;
@@ -241,4 +242,9 @@
   to {
     opacity: 1;
   }
+}
+@keyframes btn-glow {
+  0%   { box-shadow: 0 0 0 rgba(255, 80, 0, 0); }
+ 50%   { box-shadow: 0 0 12px $modalButtonsColor; }
+100%   { box-shadow: 0 0 0 rgba(255, 80, 0, 0); }
 }

@@ -67,6 +67,7 @@
   background: rgba(0, 0, 0, 0.2);
   border-radius: 0 0 130% 0;
   padding: 1.2rem 1.7rem 2rem 1.2rem;
+  animation: text-focus-in 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
   @media (min-width: 767px) {
     padding: 1.5rem 2.2rem 3rem 1.5rem;
   }
@@ -98,6 +99,7 @@
   width: 270px;
   padding: 10px 10px 10px 30px;
   color: $white;
+  animation: text-focus-in 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
 }
 #searching-input::placeholder {
   color: rgba(255, 255, 255, 0.6);
@@ -112,6 +114,7 @@
   padding: 10px 10px 10px 30px;
   color: rgba(255, 255, 255, 0.6);
   text-align: left;
+  animation: text-focus-in 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
 }
 .country-select:hover {
   background-color: none;
@@ -127,4 +130,19 @@
   overflow-x: hidden;
   max-height: 150px;
   z-index: 1000;
+}
+
+@keyframes slide-in-blurred-top {
+  0% {
+    transform: translateY(-1000px) scaleY(2.5) scaleX(0.2);
+    transform-origin: 50% 0%;
+    filter: blur(40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) scaleY(1) scaleX(1);
+    transform-origin: 50% 50%;
+    filter: blur(0);
+    opacity: 1;
+  }
 }

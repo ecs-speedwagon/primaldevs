@@ -12,7 +12,7 @@
       `).join("");b.insertAdjacentHTML("beforeend",e)}function D(e,n){const s=n.target.closest(".event-item");if(!s)return;const t=e[s.dataset.id],o=t.url||"#",r=t.images?.find(L=>L.ratio==="3_2")?.url||"",a=t.dates?.start?.localDate||"No date info",H=t.dates?.start?.localTime.slice(0,5)||"Unknown time",w=t.dates?.timezone||"Local time",f=t._embedded?.venues?.[0],y=f?.name||"We don't have enough info",U=f?.city?.name||"",B=f?.country?.name||"",A=typeof t.description=="string"&&t.description.trim()!==""?t.description.slice(0,140)+(t.description.length>140?"…":""):!1,k=t._embedded?.attractions?.[0]?.name||"Unknown performer",P=typeof t.name=="string"&&t.name.trim()!==""?t.name:"Untitled event";u.innerHTML=`<div id="modal-box" class="modal-box">
       <button class="close-modal-butt" id="close-modal-butt">
         <svg class="close-modal-icon">
-          <use href="../img/cross.svg"></use>
+          <use href="./img/cross.svg"></use>
         </svg>
       </button>
 

@@ -10,7 +10,7 @@ export function modalRender(events, el) {
 
   const imageUrl = event.images?.find(img => img.ratio === '3_2')?.url || '';
   const dateText = event.dates?.start?.localDate || 'No date info';
-  const timeText = event.dates?.start?.localTime.slice(0,5) || 'Unknown time';
+  const timeText = event.dates?.start?.localTime.slice(0, 5) || 'Unknown time';
   const timezone = event.dates?.timezone || 'Local time';
   const venue = event._embedded?.venues?.[0];
   const venueName = venue?.name || "We don't have enough info";

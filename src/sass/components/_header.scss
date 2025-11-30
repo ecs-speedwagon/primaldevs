@@ -1,8 +1,6 @@
 @use '../utilities/vars' as *;
 @use '../utilities/mixin' as *;
 
-
-
 .header-section {
   position: relative;
   height: 446px;
@@ -32,14 +30,12 @@
 .hero-text {
   @include font-text($size: 18px, $weight: 900, $color: $mainTitleColor);
   text-transform: uppercase;
-  animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+  animation: text-focus-in 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
   @media (min-width: 767px) {
     @include font-text($size: 30px, $weight: 900, $color: $mainTitleColor);
-
   }
   @media (min-width: 1279px) {
     @include font-text($size: 50px, $weight: 900, $color: $mainTitleColor);
-
   }
 }
 
@@ -54,8 +50,7 @@
   }
 }
 
-
-.logo-img{
+.logo-img {
   height: 33px;
   @media (min-width: 767px) {
     height: 50px;
@@ -123,12 +118,13 @@
 }
 
 .dropdown-toggle::after {
-    position: absolute;
-    left: 85%;
-    top: 50%;  }
-  .dropdown-menu{
-    overflow-y: auto;
-    overflow-x: hidden;
-    max-height: 150px;
-    z-index: 1000;
-  }
+  position: absolute;
+  left: 85%;
+  top: 50%;
+}
+.dropdown-menu {
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 150px;
+  z-index: 1000;
+}

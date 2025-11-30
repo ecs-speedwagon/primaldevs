@@ -11,12 +11,10 @@
     backdrop-filter: blur(3px);
     background: $modalVignette;
     animation: modal-fade-in 0.9s ease forwards;
-
   }
 }
 
 .modal-box {
-  
   position: relative;
   display: flex;
   flex-wrap: wrap;
@@ -237,6 +235,10 @@
   fill: $mainTitleColor;
 }
 @keyframes modal-fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

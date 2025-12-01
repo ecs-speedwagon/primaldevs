@@ -1,4 +1,5 @@
 import { modalContainer } from './dom.js';
+import ticketBarCode from '../img/ticketBarCode.svg';
 
 export function modalRender(events, el) {
   const item = el.target.closest('.event-item');
@@ -77,16 +78,20 @@ export function modalRender(events, el) {
       <li class="modal-info-item" id="modal-prices">
         <h2 class="modal-title">Prices</h2>
         <p class="modal-text">
-          <svg class="ticket-barcode-icon">
-            <use href="./ticketBarCode.svg"></use>
-          </svg>
+          <img
+            src="${ticketBarCode}"
+            alt="Ticket barcode"
+            class="ticket-barcode-icon"
+          />
           Standard 1000–1500 UAH
         </p>
         <button class="buy-tick-butt">Buy tickets</button>
         <p class="modal-text">
-          <svg class="ticket-barcode-icon">
-            <use href="./ticketBarCode.svg"></use>
-          </svg>
+          <img
+            src="${ticketBarCode}"
+            alt="Ticket barcode"
+            class="ticket-barcode-icon"
+          />
           VIP 3000–5500 UAH
         </p>
         <button class="buy-tick-butt">Buy tickets</button>

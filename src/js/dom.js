@@ -3,5 +3,6 @@ export const dropdownEl = document.querySelector('.dropdown-menu');
 export const dropdownBtn = document.querySelector('.dropdown-toggle');
 export const paginationContainer = document.querySelector('.pagination-box');
 export const findInput = document.querySelector('#searching-input');
+export const heroForm = document.querySelector('.hero-form');
 export const modalContainer = document.querySelector('#modal-vignette');
 export const loader = document.querySelector('.loader');

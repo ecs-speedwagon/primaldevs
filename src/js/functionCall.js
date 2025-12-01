@@ -8,6 +8,7 @@ import {
   dropdownEl,
   dropdownBtn,
   loader,
+  heroForm,
 } from './dom.js';
 import {
   currentPage,
@@ -55,13 +56,18 @@ async function initEvents(page, keyword, size, code) {
   renderDropdown();
 }
 
-findInput?.addEventListener(
-  'input',
-  debounce(e => {
-    searchQuery = e.target.value;
+heroForm?.addEventListener('submit', e => {
+  e.preventDefault();
+});
+
+heroForm?.addEventListener('input', e => {
+  e.preventDefault();
+  let input = e.target.closest('input');
+  debounce(() => {
+    searchQuery = input.value;
     initEvents(currentPage, searchQuery, size, code);
-  }, 300)
-);
+  }, 300);
+});
 eventsContainer.addEventListener('click', e => modalRender(events, e));
 
 paginationContainer.addEventListener('click', async e => {

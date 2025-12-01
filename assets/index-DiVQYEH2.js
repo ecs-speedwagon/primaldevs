@@ -58,14 +58,14 @@
         <h2 class="modal-title">Prices</h2>
         <p class="modal-text">
           <svg class="ticket-barcode-icon">
-            <use href="./img/ticketBarCode.svg"></use>
+            <use href="./ticketBarCode.svg"></use>
           </svg>
           Standard 1000–1500 UAH
         </p>
         <button class="buy-tick-butt">Buy tickets</button>
         <p class="modal-text">
           <svg class="ticket-barcode-icon">
-            <use href="./img/ticketBarCode.svg"></use>
+            <use href="./ticketBarCode.svg"></use>
           </svg>
           VIP 3000–5500 UAH
         </p>

@@ -21,3 +21,8 @@
 .pagination-dots {
   color: $white;
 }
+
+.pagination-box {
+  @include flex-center;
+  margin: 80px 0;
+}

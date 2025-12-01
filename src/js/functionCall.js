@@ -60,11 +60,9 @@ heroForm?.addEventListener('submit', e => {
   e.preventDefault();
 });
 
-heroForm?.addEventListener('input', e => {
-  e.preventDefault();
-  let input = e.target.closest('input');
+findInput?.addEventListener('input', e => {
   debounce(() => {
-    searchQuery = input.value;
+    searchQuery = e.target.value;
     initEvents(currentPage, searchQuery, size, code);
   }, 300);
 });

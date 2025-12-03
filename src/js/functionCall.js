@@ -61,11 +61,10 @@ heroForm?.addEventListener('submit', e => {
 });
 
 findInput?.addEventListener('input', e => {
-  debounce(() => {
-    searchQuery = e.target.value;
-    initEvents(currentPage, searchQuery, size, code);
-  }, 300);
+  searchQuery = findInput.value;
+  debounce(initEvents(currentPage, searchQuery, size, code), 500);
 });
+
 eventsContainer.addEventListener('click', e => modalRender(events, e));
 
 paginationContainer.addEventListener('click', async e => {
